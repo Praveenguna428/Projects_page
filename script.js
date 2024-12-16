@@ -84,4 +84,3 @@ function moveSlide(direction) {
 }
 
 // Initialize
-renderProjects();
