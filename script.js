@@ -15,7 +15,7 @@ const projects = [
         image: "https://miro.medium.com/v2/resize:fit:1400/1*Z5a-S7pre8ZYYh1PYpdU_w.png",
         links: [
             { label: "View Code", url: "https://github.com/Praveenguna428/html-simple-projects" },
-            { label: "View Project", url: "https://craftycodeverse.blogspot.com/2024/06/password-validator.html" }
+            { label: "View Project", url: "https://praveenguna428.github.io/pasword-validator/" }
         ]
     },
     {
@@ -45,43 +45,31 @@ const projects = [
             { label: "View Project", url: "https://praveenguna428.github.io/calender-display/" }
         ]
     }
-]; // <- Properly closed array
+];
 
-// Render projects
+// Function to render projects
 function renderProjects() {
-    const slider = document.getElementById("slider");
+    const container = document.getElementById("projects-container");
     projects.forEach(project => {
         const projectCard = document.createElement("div");
         projectCard.classList.add("project-card");
+
+        const linksHTML = project.links
+            .map(link => `<a href="${link.url}" target="_blank">${link.label}</a>`)
+            .join("");
+
         projectCard.innerHTML = `
             <img src="${project.image}" alt="${project.title}">
             <div class="content">
                 <h3>${project.title}</h3>
                 <p>${project.description}</p>
-                ${project.links.map(link => `<a href="${link.url}" target="_blank">${link.label}</a>`).join("")}
+                ${linksHTML}
             </div>
         `;
-        slider.appendChild(projectCard);
+
+        container.appendChild(projectCard);
     });
 }
 
-// Slider navigation
-let currentIndex = 0;
-
-function moveSlide(direction) {
-    const totalProjects = projects.length;
-    currentIndex += direction;
-
-    if (currentIndex < 0) {
-        currentIndex = totalProjects - 1;
-    } else if (currentIndex >= totalProjects) {
-        currentIndex = 0;
-    }
-
-    const slider = document.getElementById("slider");
-    const offset = -currentIndex * 320; // 320px is the width of the card
-    slider.style.transform = `translateX(${offset}px)`;
-}
-
 // Initialize
- document.addEventListener("DOMContentLoaded", renderProjects);
+document.addEventListener("DOMContentLoaded", renderProjects);
