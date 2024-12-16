@@ -84,3 +84,4 @@ function moveSlide(direction) {
 }
 
 // Initialize
+ document.addEventListener("DOMContentLoaded", renderProjects);
